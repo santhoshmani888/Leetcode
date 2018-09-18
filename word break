@@ -1,0 +1,13 @@
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+
+class Solution(object):
+  
+    def wordBreak(self, s, dict):
+        dp = [False for i in range(len(s)+1)]
+        dp[0] = True
+        for i in range(1, len(s)+1):
+            for k in range(i):
+                if dp[k] and s[k:i] in dict:
+                    dp[i] = True
+        return dp[len(s)]
